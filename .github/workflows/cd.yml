@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: CD
 
 on:
   push:
@@ -12,11 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Your buildprod script step would go here
       - name: Build Production
         run: ./scripts/buildprod.sh
 
-      # Setup gcloud CLI
       - id: "auth"
         uses: "google-github-actions/auth@v1"
         with:
@@ -25,7 +23,6 @@ jobs:
       - name: "Set up Cloud SDK"
         uses: "google-github-actions/setup-gcloud@v1"
 
-      # Build and push image
       - name: Build and Push to Artifact Registry
         run: |
           gcloud builds submit --tag us-central1-docker.pkg.dev/notely-437904/notely-ar-repo/notely:release .
