@@ -14,7 +14,7 @@ jobs:
 
       # Your buildprod script step would go here
       - name: Build Production
-        run: ./scripts/buildprod
+        run: ./scripts/buildprod.sh
 
       # Setup gcloud CLI
       - id: "auth"
